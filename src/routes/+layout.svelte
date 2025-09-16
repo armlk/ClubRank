@@ -1,8 +1,9 @@
 <script lang="ts">
 	import '../app.css';
-	import favicon from '$lib/assets/favicon.svg' 
-	
-	import Test from './Test.svelte';
+	import favicon from '$lib/assets/favicon.svg';
+
+	import Page from './+page.svelte';
+	import NavBar from './nav-bar.svelte';
 
 	let { children } = $props();
 </script>
@@ -11,7 +12,6 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-	<Test />
-
+<div class="h-screen w-screen bg-gray-800"><NavBar /><Page /></div>
 
 <!-- {@render children?.()} -->
