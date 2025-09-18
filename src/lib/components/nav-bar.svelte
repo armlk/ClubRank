@@ -4,7 +4,7 @@
 </script>
 
 <NavigationMenu.Root class="z-10 flex w-full justify-center">
-	<NavigationMenu.List class="space-between flex w-full list-none items-center justify-center py-5">
+	<NavigationMenu.List class="items-cener flex w-full list-none justify-center py-5">
 		<NavigationMenu.Item>
 			<NavigationMenu.Link href="/" class="transition-all hover:brightness-75">
 				<img class="w-10" src={clubRankLogo} alt="Club Rank Logo" />
