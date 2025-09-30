@@ -12,6 +12,8 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<div class="h-screen w-screen bg-gray-800"><NavBar /><Page /></div>
+<div class="flex h-screen w-screen flex-col justify-between bg-gray-800">
+	<NavBar /><Page />
+</div>
 
 <!-- {@render children?.()} -->
