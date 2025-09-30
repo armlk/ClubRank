@@ -30,7 +30,7 @@
 		</NavigationMenu.Item>
 		<NavigationMenu.Item class="space-x-3">
 			<NavigationMenu.Link
-				class="space-x-3 rounded-md border border-gray-600 bg-purple-500/10 px-4 py-2 text-white/85 transition-all duration-300 hover:cursor-pointer hover:border-gray-500 hover:bg-purple-800/10 hover:pr-20"
+				class="space-x-3 rounded-md border border-gray-600 bg-purple-500/10 px-4 py-2 pr-[10vw] text-white/85 transition-all duration-300 hover:cursor-pointer hover:border-gray-500 hover:bg-purple-800/10 hover:pr-[20vw]"
 				><span>🔍︎</span><span>Search</span>
 			</NavigationMenu.Link>
 			<NavigationMenu.Link
