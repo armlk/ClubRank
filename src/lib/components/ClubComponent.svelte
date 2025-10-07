@@ -1,5 +1,4 @@
 <script>
-
     export let clubName;
     import OSCLogo from "$lib/assets/osc-logo.png"
     export let description;
