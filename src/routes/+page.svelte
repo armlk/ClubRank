@@ -1,7 +1,5 @@
 <script>
-	import Search from '$lib/components/Search.svelte';
-	import Footer from '$lib/components/Footer.svelte';
+	import Hero from '$lib/components/Hero.svelte';
 </script>
 
-<Search />
-<Footer />
+<Hero />

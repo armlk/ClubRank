@@ -4,6 +4,7 @@
 
 	import Page from './+page.svelte';
 	import NavBar from '$lib/components/NavBar.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	let { children } = $props();
 </script>
@@ -13,7 +14,7 @@
 </svelte:head>
 
 <div class="flex h-screen w-screen flex-col justify-between bg-gray-800">
-	<NavBar /><Page />
+	<NavBar /><Page /><Footer />
 </div>
 
 <!-- {@render children?.()} -->
