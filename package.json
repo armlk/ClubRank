@@ -37,6 +37,7 @@
 	"dependencies": {
 		"bits-ui": "^2.9.6",
 		"dotenv": "^17.2.2",
-		"firebase": "^12.2.1"
+		"firebase": "^12.2.1",
+		"puppeteer": "^24.23.0"
 	}
 }
