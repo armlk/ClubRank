@@ -23,5 +23,5 @@ for key, value in replaceDict.items():
 
 
 
-with open("test.txt", 'w') as test:
+with open("clubs.txt", 'w') as test:
     test.write(text)
