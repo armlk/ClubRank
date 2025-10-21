@@ -1,39 +1,25 @@
 import puppeteer from "puppeteer";
+import fs from "fs/promises";
+import readline from 'readline';
 
 async function run(){
     const browser = await puppeteer.launch({
         headless: true
     });
+
+
+    const fileData = await fs.readFile("test.txt", "utf-8");
+    const clubs = fileData.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+    clubs.splice(0, 1);
+    console.log(clubs);
+   
     const page = await browser.newPage();
 
-    await page.goto("https://orgs.studentinvolvement.ufl.edu/organizations#!#searchresults", {
+    await page.goto("https://orgs.studentinvolvement.ufl.edu/organizations", {
         waitUntil: "networkidle2",
     });
-
-    const clubs = await page.evaluate(() => {
-        const clubBoxes = document.querySelectorAll(".box-body");
-        const data = [];
-
-        clubBoxes.forEach((item) => {
-            const name = item.querySelector(".box-title")
-            const description = item.querySelector("p.ng-binding")
-
-            nameVal = name ? name.textContent.trim() : "";
-            descVal = description ? description.textContent.trim() : "";
-
-            data.push({
-                name: nameVal,
-                description: descVal
-            });
-        });
-
-        return data;
-    });
-
-    console.log(clubs)
     
     await browser.close();
-
 }
 
 run();

@@ -14,7 +14,6 @@ replaceDict = {
     "Correct as of \d{2}\/\d{2}\/\d{4} \d{2}:\d{2} (PM|AM)\n": "",
     "Number of Organizations: \d+\n": "",
     "": "",
-    "�" :"'",
     "\nOrganization\n": "",
 
 }
