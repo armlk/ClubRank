@@ -1,39 +1,53 @@
 import puppeteer from "puppeteer";
+import fs from "fs/promises";
 
-async function run(){
-    const browser = await puppeteer.launch({
-        headless: true
-    });
+async function run() {
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
 
-    await page.goto("https://orgs.studentinvolvement.ufl.edu/organizations#!#searchresults", {
+    const fileData = await fs.readFile("clubs.txt", "utf-8");
+    const clubs = fileData.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+    clubs.splice(0, 1);
+
+    await page.goto("https://orgs.studentinvolvement.ufl.edu/organizations", {
         waitUntil: "networkidle2",
     });
 
-    const clubs = await page.evaluate(() => {
-        const clubBoxes = document.querySelectorAll(".box-body");
-        const data = [];
+    const results = [];
 
-        clubBoxes.forEach((item) => {
-            const name = item.querySelector(".box-title")
-            const description = item.querySelector("p.ng-binding")
+    for (let club of clubs) {
+        
+        await page.evaluate(() => document.querySelector(".form-control").value = "");
+        await page.type(".form-control", club);
+        await page.keyboard.press("Enter");
 
-            nameVal = name ? name.textContent.trim() : "";
-            descVal = description ? description.textContent.trim() : "";
+        await page.waitForSelector(".box-body");
 
-            data.push({
-                name: nameVal,
-                description: descVal
-            });
+        const data = await page.$$eval(".box-body", (boxes, clubName) => {
+            
+            const box = Array.from(boxes).find(b =>
+                b.querySelector(".box-title a")?.textContent.trim().toLowerCase() === clubName.toLowerCase()
+            );
+
+            if (!box) {
+                return { description: "" };
+            }
+
+            const desc = box.querySelector("p.ng-binding");
+            return { description: desc ? desc.textContent.trim() : "" };
+
+        }, club);
+
+        results.push({
+            name: club,
+            description: data.description
         });
 
-        return data;
-    });
+    }
 
-    console.log(clubs)
-    
+    console.log(results);
+
     await browser.close();
-
 }
 
 run();
