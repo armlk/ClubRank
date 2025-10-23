@@ -14,7 +14,5 @@
 </svelte:head>
 
 <div class="flex h-screen w-screen flex-col justify-between bg-gray-800">
-	<NavBar /><Page /><Footer />
+	<NavBar />{@render children?.()}<Footer />
 </div>
-
-<!-- {@render children?.()} -->
