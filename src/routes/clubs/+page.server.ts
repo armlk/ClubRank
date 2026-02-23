@@ -1,6 +1,5 @@
 import { db } from "$lib/firebase";
-import { fail, redirect } from "@sveltejs/kit";
-import type { Actions, PageServerLoad } from "./$types";
+import type { PageServerLoad } from "./$types";
 import { collection, query, where, orderBy, limit, type Query, getDocs } from "firebase/firestore";
 
 export const load: PageServerLoad = async ({ url }) => {
@@ -20,10 +19,7 @@ export const load: PageServerLoad = async ({ url }) => {
     }
 
     const snapshot = await getDocs(q);
-    const clubs = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data()
-    }));
+    const clubs = snapshot.docs.map(doc => doc.data());
 
     return { clubs, search }
 }

@@ -1,5 +1,6 @@
-import { initializeApp, getApps } from "firebase/app";
+import { initializeApp, getApp, getApps } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+
 import {
 	PUBLIC_API_KEY,
 	PUBLIC_AUTH_DOMAIN,
@@ -18,7 +19,5 @@ const firebaseConfig = {
 	appId: PUBLIC_APP_ID,
 };
 
-if (!getApps().length) {
-	initializeApp(firebaseConfig);
-}
-export const db = getFirestore();
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+export const db = getFirestore(app);
